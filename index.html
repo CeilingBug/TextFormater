@@ -19,6 +19,7 @@
       :root {
         --main-bg: white;
         --main-color: black;
+        --text-size: 16px;
       }
       #page {
         background-color: var(--main-bg);
@@ -52,7 +53,6 @@
     <script>
       function contrast() {
             // grab the body
-            let page = document.getElementById("page");
             let button = document.getElementById("contrast_button")
             // change the CSS
             if (button.innerText === "Light mode") {
@@ -66,6 +66,18 @@
               button.innerText = "Light mode"
             }
         }
+      function Bigger() {
+        let root = document.documentElement;
+        let currentSize = getComputedStyle(root).getPropertyValue('--text-size'); // e.g., "16px"
+        let newSize = parseInt(currentSize) + 2 + "px";
+        root.style.setProperty('--text-size', newSize);
+      }
+      function Smaller() {
+        let root = document.documentElement;
+      let currentSize = getComputedStyle(root).getPropertyValue('--text-size');
+      let newSize = parseInt(currentSize) - 2 + "px";
+      root.style.setProperty('--text-size', newSize);
+      }
     </script>
   </body>
 </html>
