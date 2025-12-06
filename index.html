@@ -10,7 +10,7 @@
   <body id="page">
     <div style="text-align: right;" class="nav">
       <button id="contrast_button" class="big" onclick="contrast()">Light mode</button>
-      <button id="format_button" class="big" onclick="Format()">Format text</button>
+      <button id="read_button" class="big" onclick="readText()">Read Text</button>
       <select id="font_select" class="big" onchange="changeFont(this.value)">
         <option value="Arial">Arial</option>
         <option value="Verdana">Verdana</option>
@@ -24,16 +24,13 @@
       </select>
       <button id="big_button" class="big" onclick="Bigger()">Bigger text</button>
       <button id="small_button" class="big" onclick="Smaller()">Smaller text</button>
-      <button id="read_button" class="big" onclick="readText()">Read Text</button>
+      <button id="toggle_highlight" class="big" onclick="Highlight()">Highlight OFF</button>
     </div>
     <div class="nav">
       <button id="bigline_button" class="small" onclick="BiggerLines()">+ line spacing</button>
       <button id="smallline_button" class="small" onclick="SmallerLines()">- line spacing</button>
       <button id="bigword_button" class="small" onclick="BiggerWords()">+ word spacing</button>
       <button id="smallword_button" class="small" onclick="SmallerWords()">- word spacing</button>
-    </div>
-    <div class="nav">
-      <button id="toggle_highlight" class="small" onclick="Highlight()">Highlight OFF</button>
     </div>
     <div class="container">
       <textarea id="bigBox"></textarea>
@@ -89,15 +86,15 @@
       .container {
         display: flex;
         justify-content: center;  /* horizontal centering */
+        height: 25vh;            /* take full viewport height */
         background-color: var(--main-bg);
         color: var(--main-color);
-        margin-bottom: 0.5em; /* small gap below textarea */
-        height: auto;         /* let height shrink to fit content */
       }
       #bigBox {
         width: 70%;
         height: 25%;
-        margin: 0; 
+        left: 0;
+        bottom: 0;
         background-color: var(--main-bg);
         color: var(--main-color);
         font-family: var(--font-family);
@@ -120,10 +117,10 @@
         border-color: var(--main-color);
       }
       .small {
-        font-size: 15px;
+        font-size: 10px;
       }
       .big {
-        font-size: 20px;
+        font-size: 15px;
       }
     </style>
     <script>
@@ -260,3 +257,4 @@
     </script>
   </body>
 </html>
+
