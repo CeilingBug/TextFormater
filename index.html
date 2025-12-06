@@ -102,22 +102,6 @@
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
       }
-      document.getElementById("format_button").onclick = async function() {
-      const outputDiv = document.getElementById("output_text");
-      outputDiv.innerText = "Loading...";
-
-      const data = await callGemini();
-
-      // Show the actual response
-      if (data.error) {
-        outputDiv.innerText = "Error: " + data.error;
-      } else {
-        // Gemini API returns content in a nested structure; extract text
-        const textOutput = data?.candidates?.[0]?.content?.map(c => c.parts.map(p => p.text).join('')).join('') || JSON.stringify(data);
-        outputDiv.innerText = textOutput;
-      }
-    };
-
     </script>
   </body>
 </html>
