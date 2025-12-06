@@ -212,6 +212,7 @@
       function contrast() {
           // grab the body
           let button = document.getElementById("contrast_button");
+          let logo = document.getElementById("logo");  // ← grab logo
           // change the CSS
           if (button.innerText === "Light mode") {
             document.documentElement.style.setProperty('--main-bg', '#050c02');
@@ -225,6 +226,7 @@
             document.documentElement.style.setProperty('--main-color', '#4A656B');
             document.documentElement.style.setProperty('--high', '#65DDF8');
             button.innerText = "Blue mode";
+            logo.src = "";
             Format()
           }
         else if (button.innerText === "Blue mode") {
@@ -232,6 +234,7 @@
             document.documentElement.style.setProperty('--main-color', 'black');
             document.documentElement.style.setProperty('--high', '#ffff99');
             button.innerText = "Light mode";
+            logo.src = "logo.png";
             Format()
           }
         savePreferences();
