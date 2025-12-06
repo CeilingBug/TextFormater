@@ -4,16 +4,23 @@
     <meta charset="character_set">
     <title>Friendly Text</title>
   </head>
-  <body>
-    <button id="contrast">Change to light mode</button>
-    <script>
-      
-    </script>
+  <body id="page">
+    <button onclick="contrast()">Change to light mode</button>
     <style>
-      body {
+      #page {
         background-color: white;
         color: black;
       }
     </style>
+    <script>
+      function contrast() {
+            // grab the body
+            let page = document.getElementById("page");
+
+            // change the CSS
+            page.style.backgroundColor = "black";
+            page.style.color = "white";
+        }
+    </script>
   </body>
 </html>
