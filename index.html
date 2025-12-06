@@ -19,7 +19,7 @@
       <button id="smallword_button" class="small" onclick="SmallerWords()">- word spacing</button>
     </div>
     <div class="nav">
-      <button id="toggle_highlight" class="small" onclick="Highlight()">Toggle highlight</button>
+      <button id="toggle_highlight" class="small" onclick="Highlight()">Highlight OFF</button>
     </div>
     <div class="container">
       <textarea id="bigBox"></textarea>
@@ -94,7 +94,7 @@
       }
     </style>
     <script>
-      let highlight = True
+      let highlight = false;
       function Highlight() {
         highlight = !highlight
         const button = document.getElementById("toggle_highlight");
@@ -130,14 +130,18 @@
       function Format() {
         let textbox = document.getElementById("bigBox");   // lowercase 'g'
         let output = document.getElementById("output_text");
-        let lines = textbox.value.split("\n");
-        output.innerHTML = lines.map((line, index) => {
-          if (index % 2 === 1) {
-            return `<span style="background-color: #ffff99; display: block;">${line}</span>`;
-          }
-          return `<span style="display: block;">${line}</span>`;
-        }).join("");
-        output.innerText = textbox.value;
+        if (highlight) {
+          let lines = textbox.value.split("\n");
+          output.innerHTML = lines.map((line, index) => {
+            if (index % 2 === 1) {
+              return `<span style="background-color: #ffff99; display: block;">${line}</span>`;
+            }
+            return `<span style="display: block;">${line}</span>`;
+          }).join("");
+        }
+        else {
+          output.innerText = textbox.value;
+        }
       }
       function BiggerLines() {
         let root = document.documentElement;
