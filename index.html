@@ -15,6 +15,8 @@
     <div class="nav">
       <button id="bigline_button" class="small" onclick="BiggerLines()">+ line spacing</button>
       <button id="smallline_button" class="small" onclick="SmallerLines()">- line spacing</button>
+      <button id="bigword_button" class="small" onclick="BiggerWords()">+ word spacing</button>
+      <button id="smallword_button" class="small" onclick="SmallerWords()">- word spacing</button>
     </div>
     <div class="container">
       <textarea id="bigBox"></textarea>
@@ -129,6 +131,18 @@
         let currentSize = getComputedStyle(root).getPropertyValue('--line-height'); // e.g., "1.8"
         let newSize = parseInt(currentSize) - 0.3;
         root.style.setProperty('--line-height', newSize);
+      }
+      function BiggerWords() {
+        let root = document.documentElement;
+        let currentSize = getComputedStyle(root).getPropertyValue('--word-spacing'); // e.g., "1.8"
+        let newSize = parseInt(currentSize) + 0.3;
+        root.style.setProperty('--word-spacing', newSize);
+      }
+      function SmallerWords() {
+        let root = document.documentElement;
+        let currentSize = getComputedStyle(root).getPropertyValue('--word-spacing'); // e.g., "1.8"
+        let newSize = parseInt(currentSize) - 0.3;
+        root.style.setProperty('--word-spacing', newSize);
       }
     </script>
   </body>
