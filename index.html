@@ -5,12 +5,16 @@
     <title>Friendly Text</title>
   </head>
   <body id="page">
-    <div style="text-align: right;" id="nav">
-      <button id="contrast_button" onclick="contrast()">Light mode</button>
-      <button id="format_button" onclick="Format()">Format text</button>
-      <button id="font_button" onclick="changeFont()">Change font</button>
-      <button id="big_button" onclick="Bigger()">Bigger text</button>
-      <button id="small_button" onclick="Smaller()">Smaller text</button>
+    <div style="text-align: right;" class="nav">
+      <button id="contrast_button" class="big" onclick="contrast()">Light mode</button>
+      <button id="format_button" class="big" onclick="Format()">Format text</button>
+      <button id="font_button" class="big" onclick="changeFont()">Change font</button>
+      <button id="big_button" class="big" onclick="Bigger()">Bigger text</button>
+      <button id="small_button" class="big" onclick="Smaller()">Smaller text</button>
+    </div>
+    <div class="nav">
+      <button id="bigline_button" class="small"></button>
+      <button id="smallline_button" class="small"></button>
     </div>
     <div class="container">
       <textarea id="bigBox"></textarea>
@@ -55,7 +59,7 @@
         color: var(--main-color);
         font-size: 20px;
       }
-      #nav {
+      .nav {
         display: flex;
         justify-content: center;
         right: 0;
@@ -65,11 +69,16 @@
         margin-top: 2em;
       }
       button {
-        font-size: 20px;
         padding: 0.6em;
         margin-left: 1em;
         background-color: var(--main-bg);
         color: var(--main-color);
+      }
+      .small {
+        font-size: 15px;
+      }
+      .big {
+        font-size: 20px;
       }
     </style>
     <script>
