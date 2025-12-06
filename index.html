@@ -18,6 +18,9 @@
       <button id="bigword_button" class="small" onclick="BiggerWords()">+ word spacing</button>
       <button id="smallword_button" class="small" onclick="SmallerWords()">- word spacing</button>
     </div>
+    <div class="nav">
+      <button id="toggle_highlight" class="small" onclick="Highlight()">+ line spacing</button>
+    </div>
     <div class="container">
       <textarea id="bigBox"></textarea>
     </div>
@@ -91,6 +94,12 @@
       }
     </style>
     <script>
+      let highlight = True
+      function Highlight() {
+        highlight = !highlight
+        const button = document.getElementById("toggle_highlight");
+        button.innerText = highlight ? "Highlight ON" : "Highlight OFF";
+      }
       function contrast() {
             // grab the body
             let button = document.getElementById("contrast_button");
@@ -121,6 +130,13 @@
       function Format() {
         let textbox = document.getElementById("bigBox");   // lowercase 'g'
         let output = document.getElementById("output_text");
+        let lines = textbox.value.split("\n");
+        output.innerHTML = lines.map((line, index) => {
+          if (index % 2 === 1) {
+            return `<span style="background-color: #ffff99; display: block;">${line}</span>`;
+          }
+          return `<span style="display: block;">${line}</span>`;
+        }).join("");
         output.innerText = textbox.value;
       }
       function BiggerLines() {
