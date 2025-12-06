@@ -9,7 +9,9 @@
       <button id="contrast_button" onclick="contrast()">Light mode</button>
       <button id="format_button" onclick="">Format text</button>
     </div>
-    <textarea id="bigBox" rows="10" cols="50"></textarea>
+    <div class="container">
+      <textarea id="bigBox" rows="10" cols="50"></textarea>
+    </div>
     <style>
       :root {
         --main-bg: white;
@@ -20,9 +22,17 @@
         color: var(--main-color);
         transition: background-color 0.5s ease, color 0.5s ease; /* transition?*/
       }
+      .container {
+        display: flex;
+        justify-content: center;  /* horizontal centering */
+        align-items: center;      /* vertical centering */
+        height: 100vh;            /* take full viewport height */
+        background-color: var(--main-bg);
+        color: var(--main-color);
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
       textarea {
-        display: block; 
-        margin: 0 auto;
+        margin: 3em;
         width: 50%;
         left: 0;
         botton: 0;
