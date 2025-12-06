@@ -97,7 +97,6 @@
         font-size: 20px;
       }
     </style>
-    document.getElementById("bigBox").addEventListener("input", Format);
     <script>
       let highlight = false;
       function Highlight() {
@@ -191,6 +190,7 @@
           root.style.setProperty('--word-spacing', newSize + "em");
         }
         Format()
+        document.getElementById("bigBox").addEventListener("input", Format);
       }
     </script>
   </body>
