@@ -217,7 +217,7 @@
         output.innerHTML = lines.map((line, index) => {
           let lineNumber = showLineNumbers
             ? `<span class="line-number">${index + 1}</span>`
-            : "";
+            : `<span class="line-number"></span>`; // empty but same width
       
           let lineText = `<span class="line-text">${line}</span>`;
       
