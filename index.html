@@ -102,6 +102,11 @@
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
       }
+      function Format() {
+        let textbox = document.GetElementById("bigBox");
+        let output = document.GetElementById("output_text");
+        output.innerText = textbox.value;
+      }
     </script>
   </body>
 </html>
