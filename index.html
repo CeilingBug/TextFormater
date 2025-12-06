@@ -128,17 +128,21 @@
         font-size: 16.5px;
       }
       .line {
-        display: grid;
-        grid-template-columns: 2em auto; /* gutter + text */
+        display: flex;
+        align-items: flex-start;
       }
       .line-number {
+        display: inline-block;
+        width: 2em;          /* fixed width so text aligns */
         text-align: right;
         margin-right: 0.5em;
         color: var(--main-color);
       }
       .line-text {
-        white-space: pre-wrap;
-        word-wrap: break-word;
+        flex: 1;
+        white-space: pre-wrap;   /* preserve user newlines */
+        word-wrap: break-word;   /* allow breaking long words */
+        overflow-wrap: break-word; /* modern equivalent */
       }
       .highlight {
         background-color: var(--high);
