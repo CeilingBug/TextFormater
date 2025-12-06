@@ -194,7 +194,10 @@
           let newSize = currentSize - 0.1;
           root.style.setProperty('--word-spacing', newSize + "em");
         }
-        function readText() {
+        Format()
+        document.getElementById("bigBox").addEventListener("input", Format);
+      }
+      function readText() {
           let textbox = document.getElementById("bigBox");
           let text = textbox.value;
       
@@ -214,9 +217,6 @@
       
           // Speak it
           window.speechSynthesis.speak(utterance);
-      }
-        Format()
-        document.getElementById("bigBox").addEventListener("input", Format);
       }
       document.getElementById("bigBox").addEventListener("input", Format);
     </script>
