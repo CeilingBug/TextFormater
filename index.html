@@ -53,6 +53,13 @@
         white-space: pre-wrap;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent calc(var(--line-height) * 1em),
+        var(--high) calc(var(--line-height) * 1em),
+        var(--high) calc(var(--line-height) * 2em)
+      );
       }
       #page {
         background-color: var(--main-bg);
@@ -103,6 +110,19 @@
         highlight = !highlight
         const button = document.getElementById("toggle_highlight");
         button.innerText = highlight ? "Highlight ON" : "Highlight OFF";
+        if (highlight) {
+          output.style.backgroundImage = `
+            repeating-linear-gradient(
+              to bottom,
+              transparent,
+              transparent calc(var(--line-height) * 1em),
+              var(--high) calc(var(--line-height) * 1em),
+              var(--high) calc(var(--line-height) * 2em)
+            )`;
+        } else {
+          output.style.backgroundImage = "none";
+        }
+
         Format()
       }
       function contrast() {
@@ -141,19 +161,7 @@
       function Format() {
         let textbox = document.getElementById("bigBox");   // lowercase 'g'
         let output = document.getElementById("output_text");
-        
-        if (highlight) {
-          let lines = textbox.value.split("\n");
-          output.innerHTML = lines.map((line, index) => {
-            if (index % 2 === 1) {
-              return `<span style="background-color: var(--high); display: block;">${line}</span>`;
-            }
-            return `<span style="display: block;">${line}</span>`;
-          }).join("");
-        }
-        else {
-          output.innerText = textbox.value;
-        }
+        output.innerText = textbox.value;
       }
       function BiggerLines() {
         let root = document.documentElement;
