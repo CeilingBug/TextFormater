@@ -6,7 +6,7 @@
   </head>
   <body id="page">
     <nav>
-      <button id="contrast_button" onclick="contrast()">Change to light mode</button>
+      <button id="contrast_button" onclick="contrast()">Light mode</button>
     </nav>
     <textarea id="bigBox" rows="10" cols="50"></textarea>
     <style>
@@ -41,15 +41,15 @@
             let page = document.getElementById("page");
             let button = document.getElementById("contrast_button")
             // change the CSS
-            if (button.innerText === "Change to light mode") {
+            if (button.innerText === "Light mode") {
               document.documentElement.style.setProperty('--main-bg', 'black');
               document.documentElement.style.setProperty('--main-color', 'white');
-              button.innerText = "Change to dark mode"
+              button.innerText = "Dark mode"
             }
-            else if (button.innerText === "Change to dark mode") {
+            else if (button.innerText === "Dark mode") {
               document.documentElement.style.setProperty('--main-bg', 'white');
               document.documentElement.style.setProperty('--main-color', 'black');
-              button.innerText = "Change to light mode"
+              button.innerText = "Light mode"
             }
         }
     </script>
