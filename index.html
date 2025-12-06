@@ -5,19 +5,25 @@
     <title>Friendly Text</title>
   </head>
   <body id="page">
-    <button id="contrast_button" onclick="contrast()">Change to light mode</button>
+    <nav>
+      <button id="contrast_button" onclick="contrast()">Change to light mode</button>
+    </nav>
     <textarea id="bigBox" rows="10" cols="50"></textarea>
     <style>
+      :root {
+        --main-bg: white;
+        --main-color: black;
+      }
       #page {
-        background-color: white;
-        color: black;
-        transition: background-color 0.5s ease, color 0.5s ease; /* transition? */
+        background-color: var(--main-bg);
+        color: var(--main-color);
+        transition: background-color 0.5s ease, color 0.5s ease; /* transition?*/
       }
       textarea {
         text-align: center;
         width: 50%;
       }
-      #contrast_button {
+      #nav {
         left: 0;
         top: 0;
         margin: 1em;
@@ -30,16 +36,17 @@
             let button = document.getElementById("contrast_button")
             // change the CSS
             if (button.innerText === "Change to light mode") {
-              page.style.backgroundColor = "black";
-              page.style.color = "white";
+              document.documentElement.style.setProperty('--main-bg', 'black');
+              document.documentElement.style.setProperty('--main-color', 'white');
               button.innerText = "Change to dark mode"
             }
             else if (button.innerText === "Change to dark mode") {
-              page.style.backgroundColor = "white";
-              page.style.color = "black";
+              document.documentElement.style.setProperty('--main-bg', 'white');
+              document.documentElement.style.setProperty('--main-color', 'black');
               button.innerText = "Change to light mode"
             }
         }
     </script>
   </body>
 </html>
+
