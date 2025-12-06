@@ -109,12 +109,16 @@
             if (button.innerText === "Light mode") {
               document.documentElement.style.setProperty('--main-bg', 'black');
               document.documentElement.style.setProperty('--main-color', 'white');
+              document.documentElement.style.setProperty('--high', '#2E5A60');
               button.innerText = "Dark mode";
+              Format()
             }
             else if (button.innerText === "Dark mode") {
               document.documentElement.style.setProperty('--main-bg', 'white');
               document.documentElement.style.setProperty('--main-color', 'black');
+              document.documentElement.style.setProperty('--high', '#ffff99');
               button.innerText = "Light mode";
+              Format()
             }
         }
       function Bigger() {
