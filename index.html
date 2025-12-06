@@ -101,8 +101,8 @@
         root.style.setProperty('--text-size', newSize);
       }
       function Format() {
-        let textbox = document.GetElementById("bigBox");
-        let output = document.GetElementById("output_text");
+        let textbox = document.getElementById("bigBox");   // lowercase 'g'
+        let output = document.getElementById("output_text");
         output.innerText = textbox.value;
       }
     </script>
