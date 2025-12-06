@@ -139,6 +139,7 @@
       }
       .line-text {
         flex: 1;
+        white-space: pre-wrap; 
       }
       .highlight {
         background-color: var(--high);
@@ -215,11 +216,13 @@
         let lines = textbox.value.split("\n");
       
         output.innerHTML = lines.map((line, index) => {
+          // Always reserve gutter space
           let lineNumber = showLineNumbers
             ? `<span class="line-number">${index + 1}</span>`
             : `<span class="line-number"></span>`;
+      
           let lineText = `<span class="line-text">${line}</span>`;
-        
+      
           if (highlight && index % 2 === 1) {
             return `<div class="line highlight">${lineNumber}${lineText}</div>`;
           }
