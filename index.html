@@ -126,12 +126,14 @@
         let currentSize = getComputedStyle(root).getPropertyValue('--text-size'); // e.g., "16px"
         let newSize = parseInt(currentSize) + 2 + "px";
         root.style.setProperty('--text-size', newSize);
+        Format()
       }
       function Smaller() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--text-size');
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
+        Format()
       }
       function Format() {
         let textbox = document.getElementById("bigBox");   // lowercase 'g'
@@ -154,6 +156,7 @@
         let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--line-height'));
         let newSize = currentSize + 0.3;
         root.style.setProperty('--line-height', newSize); // line-height is unitless
+        Format()
       }
       
       function SmallerLines() {
@@ -163,6 +166,7 @@
           let newSize = currentSize - 0.3;
           root.style.setProperty('--line-height', newSize);
         }
+        Format()
       }
       
       // WORD SPACING
@@ -171,6 +175,7 @@
         let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--word-spacing'));
         let newSize = currentSize + 0.1; // smaller increments for readability
         root.style.setProperty('--word-spacing', newSize + "em");
+        Format()
       }
       
       function SmallerWords() {
@@ -180,6 +185,7 @@
           let newSize = currentSize - 0.1;
           root.style.setProperty('--word-spacing', newSize + "em");
         }
+        Format()
       }
     </script>
   </body>
