@@ -7,7 +7,7 @@
   <body id="page">
     <div style="text-align: right;" id="nav">
       <button id="contrast_button" onclick="contrast()">Light mode</button>
-      <button id="format_button" onclick="">Format text</button>
+      <button id="format_button" onclick="Format()">Format text</button>
       <button id="font_button" onclick="changeFont()">Change font</button>
       <button id="big_button" onclick="Bigger()">Bigger text</button>
       <button id="small_button" onclick="Smaller()">Smaller text</button>
@@ -15,11 +15,21 @@
     <div class="container">
       <textarea id="bigBox" rows="20" cols="70"></textarea>
     </div>
+    <div id="output">
+      <p id="output_text"></p>
+    </div>
     <style>
       :root {
         --main-bg: white;
         --main-color: black;
         --text-size: 16px;
+      }
+      #output {
+        margin: 10em auto;
+        background-color: var(--main-bg);
+        color: var(--main-color);
+        text-align: left;
+        text-size: var(--text-size);
       }
       #page {
         background-color: var(--main-bg);
@@ -60,17 +70,17 @@
     <script>
       function contrast() {
             // grab the body
-            let button = document.getElementById("contrast_button")
+            let button = document.getElementById("contrast_button");
             // change the CSS
             if (button.innerText === "Light mode") {
               document.documentElement.style.setProperty('--main-bg', 'black');
               document.documentElement.style.setProperty('--main-color', 'white');
-              button.innerText = "Dark mode"
+              button.innerText = "Dark mode";
             }
             else if (button.innerText === "Dark mode") {
               document.documentElement.style.setProperty('--main-bg', 'white');
               document.documentElement.style.setProperty('--main-color', 'black');
-              button.innerText = "Light mode"
+              button.innerText = "Light mode";
             }
         }
       function Bigger() {
@@ -84,6 +94,11 @@
         let currentSize = getComputedStyle(root).getPropertyValue('--text-size');
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
+      }
+      function Format() {
+        let textbox = document.getElementById("output_text");
+        let input = document.getElementById("bigBox");
+        textbox.innerText = input.value;
       }
     </script>
   </body>
