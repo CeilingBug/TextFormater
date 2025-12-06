@@ -3,18 +3,19 @@
   <head>
     <meta charset="UTF-8">
     <title>Friendly Text</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic-font@1.0.0/css/open-dyslexic.min.css">
   </head>
   <body id="page">
     <div style="text-align: right;" class="nav">
       <button id="contrast_button" class="big" onclick="contrast()">Light mode</button>
       <button id="format_button" class="big" onclick="Format()">Format text</button>
-      <label for="font_select" style="margin-left:1em;">Font:</label>
       <select id="font_select" class="big" onchange="changeFont(this.value)">
         <option value="Arial">Arial</option>
         <option value="Georgia">Georgia</option>
         <option value="Courier New">Courier New</option>
         <option value="Times New Roman">Times New Roman</option>
         <option value="Verdana">Verdana</option>
+        <option value="'OpenDyslexic', sans-serif">OpenDyslexic</option>
       </select>
 
       <button id="big_button" class="big" onclick="Bigger()">Bigger text</button>
