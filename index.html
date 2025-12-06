@@ -171,6 +171,7 @@
         const savedBgColor = localStorage.getItem("main-bg");
         const savedTextColor = localStorage.getItem("main-color");
         const savedHighlight = localStorage.getItem("highlight");
+        const savedLineNumbers = localStorage.getItem("show-line-numbers");
     
         // Load saved settings into the page
         if (savedFont) document.documentElement.style.setProperty('--font-family', savedFont);
@@ -180,10 +181,12 @@
         if (savedBgColor) document.documentElement.style.setProperty('--main-bg', savedBgColor);
         if (savedTextColor) document.documentElement.style.setProperty('--main-color', savedTextColor);
         if (savedHighlight === 'true') highlight = true;
+        if (savedLineNumbers === 'true') showLineNumbers = true;
     
         // Update the button text
         document.getElementById("toggle_highlight").innerText = highlight ? "Highlight ON" : "Highlight OFF";
         document.getElementById("contrast_button").innerText = savedBgColor === '#050c02' ? "Dark mode" : "Light mode";
+        document.getElementById("toggle_numbers").innerText = showLineNumbers ? "Line Numbers ON" : "Line Numbers OFF";
         Format();
       }
       
@@ -196,6 +199,7 @@
         localStorage.setItem("main-bg", getComputedStyle(document.documentElement).getPropertyValue('--main-bg'));
         localStorage.setItem("main-color", getComputedStyle(document.documentElement).getPropertyValue('--main-color'));
         localStorage.setItem("highlight", highlight);
+        localStorage.setItem("show-line-numbers", showLineNumbers);
       }
       
       function Highlight() {
