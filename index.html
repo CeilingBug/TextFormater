@@ -34,6 +34,7 @@
         --text-size: 16px;
         --line-height: 1.8;
         --word-spacing: 0.5em;
+        --high: #ffff99;
       }
 
       * {
@@ -99,6 +100,7 @@
         highlight = !highlight
         const button = document.getElementById("toggle_highlight");
         button.innerText = highlight ? "Highlight ON" : "Highlight OFF";
+        Format()
       }
       function contrast() {
             // grab the body
@@ -134,7 +136,7 @@
           let lines = textbox.value.split("\n");
           output.innerHTML = lines.map((line, index) => {
             if (index % 2 === 1) {
-              return `<span style="background-color: #ffff99; display: block;">${line}</span>`;
+              return `<span style="background-color: var(--high); display: block;">${line}</span>`;
             }
             return `<span style="display: block;">${line}</span>`;
           }).join("");
