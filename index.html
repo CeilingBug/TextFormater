@@ -13,7 +13,7 @@
       <button id="small_button" onclick="Smaller()">Smaller text</button>
     </div>
     <div class="container">
-      <textarea id="bigBox" rows="20" cols="70"></textarea>
+      <textarea id="bigBox"></textarea>
     </div>
     <div id="output">
       <p id="output_text"></p>
@@ -32,9 +32,6 @@
         font-size: var(--text-size);
         padding: 0 20%;
       }
-      #output_text {
-        font-size: var(--text-size);
-      }
       #page {
         background-color: var(--main-bg);
         color: var(--main-color);
@@ -51,6 +48,7 @@
       #bigBox {
         margin: 3em;
         width: 70%;
+        height: 25%;
         left: 0;
         bottom: 0;
         background-color: var(--main-bg);
