@@ -27,6 +27,7 @@
       <button id="small_button" class="big" onclick="Smaller()">Smaller text</button>
       <button id="toggle_highlight" class="big" onclick="Highlight()">Highlight OFF</button>
       <button id="toggle_numbers" class="big" onclick="toggleLineNumbers()">Line Numbers OFF</button>
+      <button id="reset_button" class="big" onclick="resetDefaults()">Reset Settings</button>
     </div>
     <div class="nav">
       <button id="bigline_button" class="small" onclick="BiggerLines()">+ line spacing</button>
@@ -269,7 +270,39 @@
         Format(); // re-render output with/without numbers
         savePreferences(); 
       }
-
+      function resetDefaults() {
+      
+        // Reset all CSS variables to their original defaults
+        document.documentElement.style.setProperty('--main-bg', 'white');
+        document.documentElement.style.setProperty('--main-color', 'black');
+        document.documentElement.style.setProperty('--text-size', '16px');
+        document.documentElement.style.setProperty('--line-height', '1.8');
+        document.documentElement.style.setProperty('--word-spacing', '0.1em');
+        document.documentElement.style.setProperty('--high', '#ffff99');
+        document.documentElement.style.setProperty('--font-family', 'Arial');
+      
+        // Reset highlight + line numbers
+        highlight = false;
+        showLineNumbers = false;
+        document.getElementById("toggle_highlight").innerText = "Highlight OFF";
+        document.getElementById("toggle_numbers").innerText = "Line Numbers OFF";
+      
+        // Reset contrast button text + logo
+        document.getElementById("contrast_button").innerText = "Light mode";
+        document.getElementById("logo").src = "logo.png";
+      
+        // Reset font dropdown
+        document.getElementById("font_select").value = "Arial";
+      
+        // Clear stored preferences
+        localStorage.clear();
+      
+        // Re-render output
+        Format();
+      
+        alert("Settings have been reset to default.");
+      }
+      
       function Format() {
         let textbox = document.getElementById("bigBox");
         let output = document.getElementById("output_text");
