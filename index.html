@@ -184,13 +184,16 @@
         let textbox = document.getElementById("bigBox");   // lowercase 'g'
         let output = document.getElementById("output_text");
 
-        if (highlight) {
-          let lines = textbox.value.split("\n");
-          output.innerHTML = lines.map((line, index) => {
-            if (index % 2 === 1) {
-              return `<span style="background-color: var(--high); display: block;">${line}</span>`;
-            }
-            return `<span style="display: block;">${line}</span>`;
+        let lines = textbox.value.split("\n");
+        
+        output.innerHTML = lines.map((line, index) => {
+          // Add line number before each line
+          let lineNumber = `<span style="color: var(--main-color); margin-right: 0.5em;">${index + 1}.</span>`;
+            
+          if (highlight && index % 2 === 1) {
+            return `<span style="background-color: var(--high); display: block;">${lineNumber}${line}</span>`;
+          }
+            return `<span style="display: block;">${lineNumber}${line}</span>`;
           }).join("");
         }
         else {
