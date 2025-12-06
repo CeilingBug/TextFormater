@@ -8,7 +8,15 @@
     <div style="text-align: right;" class="nav">
       <button id="contrast_button" class="big" onclick="contrast()">Light mode</button>
       <button id="format_button" class="big" onclick="Format()">Format text</button>
-      <button id="font_button" class="big" onclick="changeFont()">Change font</button>
+      <label for="font_select" style="margin-left:1em;">Font:</label>
+      <select id="font_select" class="big" onchange="changeFont(this.value)">
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+
       <button id="big_button" class="big" onclick="Bigger()">Bigger text</button>
       <button id="small_button" class="big" onclick="Smaller()">Smaller text</button>
       <button id="read_button" class="big" onclick="readText()">Read Text</button>
@@ -36,6 +44,7 @@
         --line-height: 1.8;
         --word-spacing: 0.5em;
         --high: #ffff99;
+        --font-family: Arial, sans-serif
       }
 
       * {
@@ -51,6 +60,7 @@
         padding: 0 20%;
         line-height: var(--line-height);       /* space between lines */
         word-spacing: var(--word-spacing);    /* space between words */
+        font-family: var(--font-family);
         white-space: pre-wrap;
         word-wrap: break-word;
         overflow-wrap: break-word;
@@ -78,6 +88,7 @@
         bottom: 0;
         background-color: var(--main-bg);
         color: var(--main-color);
+        font-family: var(--font-family);
         font-size: 20px;
       }
       .nav {
@@ -129,6 +140,10 @@
               Format()
             }
         }
+      function changeFont(fontName) {
+        document.documentElement.style.setProperty('--font-family', fontName);
+        Format(); 
+      }
       function Bigger() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--text-size'); // e.g., "16px"
