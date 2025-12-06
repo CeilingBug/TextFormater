@@ -129,6 +129,8 @@
     </style>
     <script>
       let highlight = false;
+      let textarea = document.getElementById("bigBox");
+      textarea.value = "Paste your text into this box for formatting!"
       function Highlight() {
         highlight = !highlight
         const button = document.getElementById("toggle_highlight");
