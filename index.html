@@ -193,9 +193,8 @@
           if (highlight && index % 2 === 1) {
             return `<span style="background-color: var(--high); display: block;">${lineNumber}${line}</span>`;
           }
-            return `<span style="display: block;">${lineNumber}${line}</span>`;
-          }).join("");
-        }
+          return `<span style="display: block;">${lineNumber}${line}</span>`;
+        }).join("");
       }
       function BiggerLines() {
         let root = document.documentElement;
