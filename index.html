@@ -102,31 +102,7 @@
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
       }
-      async function callGemini() {
-      try {
-        const resp = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': 'AIzaSyCBPkVTUd7T0XoDp43fn5WQxS-UXUFAYmg'  // replace with your actual key
-          },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: "Hello Gemini! Give a short greeting." }] }]
-          })
-        });
-
-        if (!resp.ok) {
-          throw new Error(`HTTP error! status: ${resp.status}`);
-        }
-
-        const data = await resp.json();
-        return data;
-      } catch (err) {
-        console.error("Error calling Gemini:", err);
-        return { error: err.message };
-      }
-    }
-    document.getElementById("format_button").onclick = async function() {
+      document.getElementById("format_button").onclick = async function() {
       const outputDiv = document.getElementById("output_text");
       outputDiv.innerText = "Loading...";
 
