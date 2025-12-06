@@ -25,6 +25,7 @@
       <button id="big_button" class="big" onclick="Bigger()">Bigger text</button>
       <button id="small_button" class="big" onclick="Smaller()">Smaller text</button>
       <button id="toggle_highlight" class="big" onclick="Highlight()">Highlight OFF</button>
+      <button id="toggle_numbers" class="big" onclick="toggleLineNumbers()">Line Numbers OFF</button>
     </div>
     <div class="nav">
       <button id="bigline_button" class="small" onclick="BiggerLines()">+ line spacing</button>
@@ -125,6 +126,24 @@
       .big {
         font-size: 17px;
       }
+      .line {
+        display: flex;
+        align-items: flex-start;
+      }
+      .line-number {
+        display: inline-block;
+        width: 2em;          /* fixed width so text aligns */
+        text-align: right;
+        margin-right: 0.5em;
+        color: var(--main-color);
+      }
+      .line-text {
+        flex: 1;
+      }
+      .highlight {
+        background-color: var(--high);
+      }
+
     </style>
     <script>
       let highlight = false;
@@ -180,22 +199,35 @@
         root.style.setProperty('--text-size', newSize);
         Format()
       }
-      function Format() {
-        let textbox = document.getElementById("bigBox");   // lowercase 'g'
-        let output = document.getElementById("output_text");
+      let showLineNumbers = false;
 
+      function toggleLineNumbers() {
+        showLineNumbers = !showLineNumbers;
+        const button = document.getElementById("toggle_numbers");
+        button.innerText = showLineNumbers ? "Line Numbers ON" : "Line Numbers OFF";
+        Format(); // re-render output with/without numbers
+      }
+
+      function Format() {
+        let textbox = document.getElementById("bigBox");
+        let output = document.getElementById("output_text");
+      
         let lines = textbox.value.split("\n");
-        
+      
         output.innerHTML = lines.map((line, index) => {
-          // Add line number before each line
-          let lineNumber = `<span style="color: var(--main-color); margin-right: 0.5em;">${index + 1}.</span>`;
-            
+          let lineNumber = showLineNumbers
+            ? `<span class="line-number">${index + 1}</span>`
+            : "";
+      
+          let lineText = `<span class="line-text">${line}</span>`;
+      
           if (highlight && index % 2 === 1) {
-            return `<span style="background-color: var(--high); display: block;">${lineNumber}${line}</span>`;
+            return `<div class="line highlight">${lineNumber}${lineText}</div>`;
           }
-          return `<span style="display: block;">${lineNumber}${line}</span>`;
+          return `<div class="line">${lineNumber}${lineText}</div>`;
         }).join("");
       }
+
       function BiggerLines() {
         let root = document.documentElement;
         let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--line-height'));
