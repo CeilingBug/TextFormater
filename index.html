@@ -9,9 +9,7 @@
       <button id="contrast_button" onclick="contrast()">Light mode</button>
       <button id="format_button" onclick="">Format text</button>
     </div>
-    <div id="textarea_container">
-      <textarea id="bigBox" rows="10" cols="50"></textarea>
-    </div>
+    <textarea id="bigBox" rows="10" cols="50"></textarea>
     <style>
       :root {
         --main-bg: white;
@@ -21,10 +19,6 @@
         background-color: var(--main-bg);
         color: var(--main-color);
         transition: background-color 0.5s ease, color 0.5s ease; /* transition?*/
-      }
-      #textarea_container {
-        margin: auto;
-        background-color: var(--main-bg);
       }
       textarea {
         margin: auto;
