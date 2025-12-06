@@ -188,10 +188,10 @@
           let lines = textbox.value.split("\n");
           output.innerHTML = lines.map((line, index) => {
             if (index % 2 === 1) {
-              return `<span style="background-color: var(--high);">${line}</span><br>`;
+              return `<span style="background-color: var(--high); display: block;">${line}</span>`;
             }
-            return `<span>${line}</span><br>`;
-          }).join(""); 
+            return `<span style="display: block;">${line}</span>`;
+          }).join("");
         }
         else {
           output.innerText = textbox.value;
