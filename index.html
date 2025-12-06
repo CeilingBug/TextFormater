@@ -123,25 +123,25 @@
       function BiggerLines() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--line-height'); // e.g., "1.8"
-        let newSize = parseInt(currentSize) + 0.3;
+        let newSize = parseFloat(currentSize) + 0.3;
         root.style.setProperty('--line-height', newSize);
       }
       function SmallerLines() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--line-height'); // e.g., "1.8"
-        let newSize = parseInt(currentSize) - 0.3;
+        let newSize = parseFloat(currentSize) - 0.3;
         root.style.setProperty('--line-height', newSize);
       }
       function BiggerWords() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--word-spacing'); // e.g., "1.8"
-        let newSize = parseInt(currentSize) + 0.3;
+        let newSize = parseFloat(currentSize) + 0.3;
         root.style.setProperty('--word-spacing', newSize);
       }
       function SmallerWords() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--word-spacing'); // e.g., "1.8"
-        let newSize = parseInt(currentSize) - 0.3;
+        let newSize = parseFloat(currentSize) - 0.3;
         root.style.setProperty('--word-spacing', newSize);
       }
     </script>
