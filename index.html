@@ -11,6 +11,7 @@
       <button id="font_button" class="big" onclick="changeFont()">Change font</button>
       <button id="big_button" class="big" onclick="Bigger()">Bigger text</button>
       <button id="small_button" class="big" onclick="Smaller()">Smaller text</button>
+      <button id="read_button" class="big" onclick="readText()">Read Text</button>
     </div>
     <div class="nav">
       <button id="bigline_button" class="small" onclick="BiggerLines()">+ line spacing</button>
@@ -193,6 +194,27 @@
           let newSize = currentSize - 0.1;
           root.style.setProperty('--word-spacing', newSize + "em");
         }
+        function readText() {
+          let textbox = document.getElementById("bigBox");
+          let text = textbox.value;
+      
+          if (!text) {
+              alert("There's nothing to read!");
+              return;
+          }
+      
+          // Create a speech synthesis utterance
+          let utterance = new SpeechSynthesisUtterance(text);
+      
+          // Optional settings
+          utterance.lang = 'en-US'; // Language
+          utterance.rate = 1;       // Speed (0.1 - 10)
+          utterance.pitch = 1;      // Pitch (0 - 2)
+          utterance.volume = 1;     // Volume (0 - 1)
+      
+          // Speak it
+          window.speechSynthesis.speak(utterance);
+      }
         Format()
         document.getElementById("bigBox").addEventListener("input", Format);
       }
