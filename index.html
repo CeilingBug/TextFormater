@@ -7,7 +7,7 @@
   <body id="page">
     <div style="text-align: right;" id="nav">
       <button id="contrast_button" onclick="contrast()">Light mode</button>
-      <button id="format_button" onclick="Format()">Format text</button>
+      <button id="format_button">Format text</button>
       <button id="font_button" onclick="changeFont()">Change font</button>
       <button id="big_button" onclick="Bigger()">Bigger text</button>
       <button id="small_button" onclick="Smaller()">Smaller text</button>
@@ -52,7 +52,7 @@
         margin: 3em;
         width: 70%;
         left: 0;
-        bottom: 0;
+        button: 0;
         background-color: var(--main-bg);
         color: var(--main-color);
         font-size: 20px;
@@ -102,12 +102,48 @@
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
       }
-      function Format() {
-        let textbox = document.getElementById("output_text");
-        let input = document.getElementById("bigBox");
-        textbox.innerText = input.value;
+      async function callGemini() {
+      try {
+        const resp = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': 'AIzaSyCBPkVTUd7T0XoDp43fn5WQxS-UXUFAYmg'  // replace with your actual key
+          },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: "Hello Gemini! Give a short greeting." }] }]
+          })
+        });
+
+        if (!resp.ok) {
+          throw new Error(`HTTP error! status: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        return data;
+      } catch (err) {
+        console.error("Error calling Gemini:", err);
+        return { error: err.message };
       }
+    }
+    document.getElementById("format_button").onclick = async function() {
+      const outputDiv = document.getElementById("output_text");
+      outputDiv.innerText = "Loading...";
+
+      const data = await callGemini();
+
+      // Show the actual response
+      if (data.error) {
+        outputDiv.innerText = "Error: " + data.error;
+      } else {
+        // Gemini API returns content in a nested structure; extract text
+        const textOutput = data?.candidates?.[0]?.content?.map(c => c.parts.map(p => p.text).join('')).join('') || JSON.stringify(data);
+        outputDiv.innerText = textOutput;
+      }
+    };
+
     </script>
   </body>
 </html>
+
 
