@@ -158,55 +158,100 @@
       let highlight = false;
       let textarea = document.getElementById("bigBox");
       textarea.value = "Welcome to DYSLEX FRIENDLY.\nThis tool is designed to help make reading easier by allowing you to customize your viewing experience, such as fonts, colours, and spacing.\nPaste your text to begin!"
+
+      window.onload = function() {
+        loadPreferences();
+      };
+  
+      function loadPreferences() {
+        const savedFont = localStorage.getItem("font-family");
+        const savedTextSize = localStorage.getItem("text-size");
+        const savedLineHeight = localStorage.getItem("line-height");
+        const savedWordSpacing = localStorage.getItem("word-spacing");
+        const savedBgColor = localStorage.getItem("main-bg");
+        const savedTextColor = localStorage.getItem("main-color");
+        const savedHighlight = localStorage.getItem("highlight");
+    
+        // Load saved settings into the page
+        if (savedFont) document.documentElement.style.setProperty('--font-family', savedFont);
+        if (savedTextSize) document.documentElement.style.setProperty('--text-size', savedTextSize);
+        if (savedLineHeight) document.documentElement.style.setProperty('--line-height', savedLineHeight);
+        if (savedWordSpacing) document.documentElement.style.setProperty('--word-spacing', savedWordSpacing);
+        if (savedBgColor) document.documentElement.style.setProperty('--main-bg', savedBgColor);
+        if (savedTextColor) document.documentElement.style.setProperty('--main-color', savedTextColor);
+        if (savedHighlight === 'true') highlight = true;
+    
+        // Update the button text
+        document.getElementById("toggle_highlight").innerText = highlight ? "Highlight ON" : "Highlight OFF";
+        document.getElementById("contrast_button").innerText = savedBgColor === '#050c02' ? "Dark mode" : "Light mode";
+        Format();
+      }
+      
+      function savePreferences() {
+        // Save preferences to localStorage
+        localStorage.setItem("font-family", getComputedStyle(document.documentElement).getPropertyValue('--font-family'));
+        localStorage.setItem("text-size", getComputedStyle(document.documentElement).getPropertyValue('--text-size'));
+        localStorage.setItem("line-height", getComputedStyle(document.documentElement).getPropertyValue('--line-height'));
+        localStorage.setItem("word-spacing", getComputedStyle(document.documentElement).getPropertyValue('--word-spacing'));
+        localStorage.setItem("main-bg", getComputedStyle(document.documentElement).getPropertyValue('--main-bg'));
+        localStorage.setItem("main-color", getComputedStyle(document.documentElement).getPropertyValue('--main-color'));
+        localStorage.setItem("highlight", highlight);
+      }
+      
       function Highlight() {
-        highlight = !highlight
+        highlight = !highlight; 
         const button = document.getElementById("toggle_highlight");
         button.innerText = highlight ? "Highlight ON" : "Highlight OFF";
-        Format()
+        Format(); 
+        savePreferences();
       }
       function contrast() {
-            // grab the body
-            let button = document.getElementById("contrast_button");
-            // change the CSS
-            if (button.innerText === "Light mode") {
-              document.documentElement.style.setProperty('--main-bg', '#050c02');
-              document.documentElement.style.setProperty('--main-color', 'white');
-              document.documentElement.style.setProperty('--high', '#2E5A60');
-              button.innerText = "Dark mode";
-              Format()
-            }
-            else if (button.innerText === "Dark mode") {
-              document.documentElement.style.setProperty('--main-bg', '#72C0D3');
-              document.documentElement.style.setProperty('--main-color', '#4A656B');
-              document.documentElement.style.setProperty('--high', '#65DDF8');
-              button.innerText = "Blue mode";
-              Format()
-            }
-          else if (button.innerText === "Blue mode") {
-              document.documentElement.style.setProperty('--main-bg', 'white');
-              document.documentElement.style.setProperty('--main-color', 'black');
-              document.documentElement.style.setProperty('--high', '#ffff99');
-              button.innerText = "Light mode";
-              Format()
-            }
-        }
+          // grab the body
+          let button = document.getElementById("contrast_button");
+          // change the CSS
+          if (button.innerText === "Light mode") {
+            document.documentElement.style.setProperty('--main-bg', '#050c02');
+            document.documentElement.style.setProperty('--main-color', 'white');
+            document.documentElement.style.setProperty('--high', '#2E5A60');
+            button.innerText = "Dark mode";
+            Format()
+          }
+          else if (button.innerText === "Dark mode") {
+            document.documentElement.style.setProperty('--main-bg', '#72C0D3');
+            document.documentElement.style.setProperty('--main-color', '#4A656B');
+            document.documentElement.style.setProperty('--high', '#65DDF8');
+            button.innerText = "Blue mode";
+            Format()
+          }
+        else if (button.innerText === "Blue mode") {
+            document.documentElement.style.setProperty('--main-bg', 'white');
+            document.documentElement.style.setProperty('--main-color', 'black');
+            document.documentElement.style.setProperty('--high', '#ffff99');
+            button.innerText = "Light mode";
+            Format()
+          }
+        savePreferences();
+      }
       function changeFont(fontName) {
         document.documentElement.style.setProperty('--font-family', fontName);
         Format(); 
+        savePreferences();
       }
       function Bigger() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--text-size'); // e.g., "16px"
         let newSize = parseInt(currentSize) + 2 + "px";
         root.style.setProperty('--text-size', newSize);
-        Format()
+        Format(); 
+        savePreferences();
       }
       function Smaller() {
         let root = document.documentElement;
         let currentSize = getComputedStyle(root).getPropertyValue('--text-size');
         let newSize = parseInt(currentSize) - 2 + "px";
         root.style.setProperty('--text-size', newSize);
-        Format()
+        Format(); 
+        savePreferences();
       }
       let showLineNumbers = false;
 
@@ -215,6 +260,7 @@
         const button = document.getElementById("toggle_numbers");
         button.innerText = showLineNumbers ? "Line Numbers ON" : "Line Numbers OFF";
         Format(); // re-render output with/without numbers
+        savePreferences(); 
       }
 
       function Format() {
@@ -245,7 +291,8 @@
         let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--line-height'));
         let newSize = currentSize + 0.3;
         root.style.setProperty('--line-height', newSize); // line-height is unitless
-        Format()
+        Format(); 
+        savePreferences();
       }
 
       function SmallerLines() {
@@ -255,7 +302,8 @@
           let newSize = currentSize - 0.3;
           root.style.setProperty('--line-height', newSize);
         }
-        Format()
+        Format(); 
+        savePreferences();
       }
 
       // WORD SPACING
@@ -264,7 +312,8 @@
         let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--word-spacing'));
         let newSize = currentSize + 0.1; // smaller increments for readability
         root.style.setProperty('--word-spacing', newSize + "em");
-        Format()
+        Format(); 
+        savePreferences();
       }
 
       function SmallerWords() {
@@ -274,8 +323,8 @@
           let newSize = currentSize - 0.1;
           root.style.setProperty('--word-spacing', newSize + "em");
         }
-        Format()
-        document.getElementById("bigBox").addEventListener("input", Format);
+        Format(); 
+        savePreferences();
       }
       function readText() {
           let textbox = document.getElementById("bigBox");
