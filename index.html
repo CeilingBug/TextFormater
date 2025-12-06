@@ -223,7 +223,7 @@
             : `<span class="line-number"></span>`;
       
           // If line is empty, insert a non-breaking space so it still renders
-          let safeLine = line.trim() === "" ? "&nbsp;" : line;
+          let safeLine = line.length === 0 ? "&nbsp;" : line;
           let lineText = `<span class="line-text">${safeLine}</span>`;
       
           if (highlight && index % 2 === 1) {
